@@ -23,3 +23,7 @@ fun Message.asViewModel(): MessageVM = MessageVM(
 )
 
 fun List<Message>.mapToViewModel(): List<MessageVM> = map { it.asViewModel() }
+
+fun ContentType.render(content: String): String = when (this) {
+    ContentType.PLAIN -> content
+}
