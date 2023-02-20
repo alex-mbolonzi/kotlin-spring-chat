@@ -1,5 +1,6 @@
 package com.example.kotlin.chat.service
 
+import com.example.kotlin.chat.mapToViewModel
 import com.example.kotlin.chat.repository.ContentType
 import com.example.kotlin.chat.repository.Message
 import com.example.kotlin.chat.repository.MessageRepository
@@ -13,13 +14,11 @@ class PersistentMessageService(val messageRepository: MessageRepository) : Messa
 
     override fun latest(): List<MessageVM> =
         messageRepository.findLatest()
-            .map { with(it) { MessageVM(content, UserVM(username,
-                URL(userAvatarImageLink)), sent, id) } }
+            .mapToViewModel() // now we can use the mentioned extension on List<Message>
 
     override fun after(lastMessageId: String): List<MessageVM> =
         messageRepository.findLatest(lastMessageId)
-            .map { with(it) { MessageVM(content, UserVM(username,
-                URL(userAvatarImageLink)), sent, id) } }
+            .mapToViewModel()
 
     override fun post(message: MessageVM) {
         messageRepository.save(
