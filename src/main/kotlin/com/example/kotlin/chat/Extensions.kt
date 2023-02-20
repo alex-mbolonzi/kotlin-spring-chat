@@ -10,7 +10,7 @@ import org.intellij.markdown.parser.MarkdownParser
 import java.net.URL
 
 
-fun MessageVM.asDomainObject(contentType: ContentType = ContentType.PLAIN): Message = Message(
+fun MessageVM.asDomainObject(contentType: ContentType = ContentType.MARKDOWN): Message = Message(
     content,
     contentType,
     sent,
@@ -20,7 +20,7 @@ fun MessageVM.asDomainObject(contentType: ContentType = ContentType.PLAIN): Mess
 )
 
 fun Message.asViewModel(): MessageVM = MessageVM(
-    content,
+    contentType.render(content),
     UserVM(username, URL(userAvatarImageLink)),
     sent,
     id
