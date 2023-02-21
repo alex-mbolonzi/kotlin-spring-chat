@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service
 @Primary
 class PersistentMessageService(val messageRepository: MessageRepository) : MessageService {
 
-    override fun latest(): List<MessageVM> =
+    override suspend fun latest(): List<MessageVM> =
         messageRepository.findLatest()
             .mapToViewModel() // now we can use the mentioned extension on List<Message>
 
-    override fun after(messageId: String): List<MessageVM> =
+    override suspend fun after(messageId: String): List<MessageVM> =
         messageRepository.findLatest(messageId)
             .mapToViewModel()
 
-    override fun post(message: MessageVM) {
+    override suspend fun post(message: MessageVM) {
         messageRepository.save(message.asDomainObject())
     }
 }

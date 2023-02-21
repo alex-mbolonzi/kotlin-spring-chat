@@ -36,6 +36,10 @@ dependencies {
 	runtimeOnly("com.h2database:h2")
 
 	implementation("org.jetbrains:markdown:0.2.2")
+
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 }
 
 tasks.withType<Test> {
