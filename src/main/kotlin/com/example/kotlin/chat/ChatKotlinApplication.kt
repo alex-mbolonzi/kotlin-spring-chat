@@ -11,12 +11,12 @@ import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator
 
 @SpringBootApplication
-class ChatKotlinApplication {
+class ChatKotlinApplication
 
 	fun main(args: Array<String>) {
 		runApplication<ChatKotlinApplication>(*args)
 	}
-}
+
 
 @Configuration
 class Config {
